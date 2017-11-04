@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>TopUp - book your battery</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  </head>
+  <body>
+  <div style="height: 100%;">
+  <div class="menu font-weight-light">
+  <img src="logo.png"></img>
+  <h1>TopUp <small>Book your battery</small></h1>
+  </div>
+  <div class="main">
+  <h2 class="text-center">Profit Calculator</h2>
+  <div class="container">
+    <div class="row">
+    <div class="col-5">
+    <div class="border border-success-new rounded" style="border-color: #6ff29e; border-width: 4px; border-radius: 10px!important;">
+    <div style="margin: 1.5em; color: #606060;">
+    <table class="leftTable">
+      <tr><td>Battery Capacity:</td><td><input id="battery_size" class="roundedInput" onkeyup="convert()" value="80"></td><td>kWh</td></tr>
+ <tr><td>Power Cost:</td><td><input id="power_cost" class="roundedInput" onkeyup="convert()"></td><td>€/kWh</td></tr>
+  <tr><td>Battery % to sell:</td><td><input id="usable" class="roundedInput" onkeyup="convert()" value="65"></td><td>%</td></tr>
+ <tr><td>Revenue per kWh:</td><td><input id="revenue" class="roundedInput" onkeyup="convert()" value="1"></td><td>€</td></tr>
+ <tr><td>TopUp Service Fee:</td><td><span id="fee" class="roundedInput" onkeyup="convert()">5</span></td><td>%</td></tr>
+      </table>
+      </div>
+      <div>
+      </div>
+    </div>
+    </div>
+    <div class="col bigSign">
+      =
+    </div>
+    <div class="col-5" style="margin: 1.5em; color: #606060;">
+    <table class="rightTable">
+      <tr><td><input id="sellable_kwh" class="roundedInput" onkeyup="convert()" value="80" disabled></td><td>kWh to sell</td></tr>
+ <tr><td><input id="price" class="roundedInput" onkeyup="convert()" disabled></td><td>Cost per full charge 0-100%</td></tr>
+  <tr><td><input id="revenue_total" class="roundedInput" onkeyup="convert()" value="65€" disabled></td><td>Revenue</td></tr>
+ <tr><td><input id="our_fee" class="roundedInput" onkeyup="convert()" value="1€" disabled></td><td>TopUp fee</td></tr>
+ </table>
+ <hr/>
+ <div style="background-color: #ddf8ea; padding: 15px; font-size: 22px; width: 280px"><span>Total Profit</span><span  id="profit" style="margin-left: 80px; font-weight: bold;">0</span></div>
+      
+    </div>
+  </div>
+  </div>
+  </div>
+    </div>
+    </div>
+    <footer>
+    <span style="float:right; color: white; line-height: 40px; margin-right:5px; font-size: 25px;"> © 2017 TopUp<span>
+    </footer>
+    <script>
+function convert() {
+  battery_size = document.getElementById("battery_size").value
+  power_cost = document.getElementById("power_cost").value
+  revenue = document.getElementById("revenue").value
+  usable = document.getElementById("usable").value
+  fee = document.getElementById("fee").innerHTML
+
+  price_per_full_charge = battery_size * power_cost
+  sellable_kwh = usable / 100 * battery_size
+  revenue_total = sellable_kwh * revenue
+  fee_per_kwh = fee / 100 * revenue
+  total_fee = fee_per_kwh * sellable_kwh
+  possible_profit = revenue_total - price_per_full_charge - total_fee
+
+  document.getElementById("sellable_kwh").value = sellable_kwh;
+  document.getElementById("revenue_total").value = revenue_total;
+  document.getElementById("price").value = price_per_full_charge + "€";
+  document.getElementById("our_fee").value = total_fee;
+  document.getElementById("profit").innerHTML =  possible_profit + " €";
+}
+</script>
+  </body>
+</html>
