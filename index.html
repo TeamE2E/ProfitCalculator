@@ -23,7 +23,7 @@
     <div style="margin: 1.5em; color: #606060;">
     <table class="leftTable">
       <tr><td>Battery Capacity:</td><td><input id="battery_size" class="roundedInput" onkeyup="convert()" value="80"></td><td>kWh</td></tr>
- <tr><td>Power Cost:</td><td><input id="power_cost" class="roundedInput" onkeyup="convert()"></td><td>€/kWh</td></tr>
+ <tr><td>Power Cost:</td><td><input id="power_cost" class="roundedInput" onkeyup="convert()" value="0.16"></td><td>€/kWh</td></tr>
   <tr><td>Battery % to sell:</td><td><input id="usable" class="roundedInput" onkeyup="convert()" value="65"></td><td>%</td></tr>
  <tr><td>Revenue per kWh:</td><td><input id="revenue" class="roundedInput" onkeyup="convert()" value="1"></td><td>€</td></tr>
  <tr><td>TopUp Service Fee:</td><td><span id="fee" class="roundedInput" onkeyup="convert()">5</span></td><td>%</td></tr>
@@ -56,6 +56,7 @@
     <span style="float:right; color: white; line-height: 40px; margin-right:5px; font-size: 25px;"> © 2017 TopUp<span>
     </footer>
     <script>
+    convert();
 function convert() {
   battery_size = document.getElementById("battery_size").value
   power_cost = document.getElementById("power_cost").value
