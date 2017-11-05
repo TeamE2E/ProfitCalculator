@@ -75,7 +75,7 @@ function convert() {
   document.getElementById("revenue_total").value = revenue_total;
   document.getElementById("price").value = price_per_full_charge + "€";
   document.getElementById("our_fee").value = total_fee;
-  document.getElementById("profit").innerHTML =  possible_profit + " €";
+  document.getElementById("profit").innerHTML =  possible_profit.toFixed(2) + " €";
 }
 </script>
   </body>
